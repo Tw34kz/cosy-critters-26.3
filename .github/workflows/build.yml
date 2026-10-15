@@ -1,18 +1,16 @@
 name: build
-on: [pull_request, push]
+
+on:
+  pull_request:
+  push:
+  workflow_dispatch: # Dit activeert de handmatige startknop
 
 jobs:
   build:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        version: [ 1.20.1-fabric, 1.20.1-forge,
-                   1.21.1-fabric, 1.21.1-neoforge,
-                   1.21.4-fabric, 1.21.4-neoforge,
-                   1.21.9-fabric,
-                   1.21.11-fabric,
-                   26.1-fabric,
-                   26.2-fabric ]
+        version: [ 26.2-fabric ] # Bouwt alleen deze versie om Java-conflicten te voorkomen
     steps:
       - name: checkout repository
         uses: actions/checkout@v4
